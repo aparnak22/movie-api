@@ -5,48 +5,48 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Entity
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Movie {
 
-    //@Id
-    //@GeneratedValue
-    //@Column(updatable = false, nullable = false)
+    @Id
+    @GeneratedValue
+    @Column(updatable = false, nullable = false)
     Integer id;
 
-    //@Column
+    @Column
     boolean adult;
 
-    //@Column
+    @Column
     String overview;
 
-    //@Column
+    @Column
     String releaseDate;
 
-    //@Column
+    @Column
     Genre genre;
 
-    //@Column
+    @Column
     String originalTitle;
 
-    //@Column
+    @Column
     String originalLanguage;
 
-    //@Column
+    @Column
     Integer voteCount;
 
-    //@Column
+    @Column
     Double voteAverage;
 
-    //@Column
+    @Column
     Certification certification;
 
 }
