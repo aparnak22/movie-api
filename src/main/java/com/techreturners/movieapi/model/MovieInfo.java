@@ -12,6 +12,18 @@ public class MovieInfo {
     private   String overview;
     private   float vote_average ;
 
+    public MovieInfo(){
+        super();
+    }
+    public MovieInfo(long id, String original_language, String release_date, String title, String overview, float vote_average) {
+        this.id = id;
+        this.original_language = original_language;
+        this.release_date = release_date;
+        this.title = title;
+        this.overview = overview;
+        this.vote_average = vote_average;
+    }
+
     public long getId() {
         return id;
     }
