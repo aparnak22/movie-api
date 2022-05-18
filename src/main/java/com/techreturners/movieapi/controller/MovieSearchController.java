@@ -1,5 +1,6 @@
 package com.techreturners.movieapi.controller;
 
+import com.techreturners.movieapi.model.Certification;
 import com.techreturners.movieapi.model.MovieRecommendations;
 import com.techreturners.movieapi.service.CertificationCategoryLookupService;
 import com.techreturners.movieapi.service.MovieSearchService;
@@ -33,4 +34,15 @@ public class MovieSearchController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/search", params = {"age" , "release_year"}, method = GET)
+    public ResponseEntity<MovieRecommendations> getMovieRecommendations(@RequestParam(value="age", defaultValue = "-1" ) int age ,
+                                                                  @RequestParam("release_year" ) int releaseYear ) {
+        System.out.println("searching by release_year, age");
+        Certification certification = null;
+        if ( age != -1 ) {
+            certification = certificationLookupService.getCertification(age);
+        }
+        MovieRecommendations result = movieSearchService.getRecommendations(certification, releaseYear);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

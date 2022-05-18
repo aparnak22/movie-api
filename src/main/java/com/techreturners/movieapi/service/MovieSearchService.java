@@ -41,9 +41,29 @@ public class MovieSearchService {
 
     public MovieRecommendations getRecommendations(Certification certificationType) {
 
-        String url = BASE_URL + "&certification_country=GB&certification=" + certificationType.getCertificationCode();
+        String url = appendCertificationParameter(BASE_URL, certificationType);
         System.out.println("calling " + url);
         MovieRecommendations getMoviesByAge = restTemplate.getForObject(url, MovieRecommendations.class);
         return getMoviesByAge;
+    }
+
+
+    public MovieRecommendations getRecommendations(Certification certificationType, int releaseYear) {
+        String url = appendCertificationParameter(BASE_URL, certificationType);
+        url = appendReleaseParameter(url, releaseYear);
+        System.out.println("calling " + url);
+        return  restTemplate.getForObject(url, MovieRecommendations.class);
+    }
+
+    private String appendCertificationParameter(String baseURL, Certification certificationType){
+        if (certificationType != null)
+            baseURL += "&certification_country=GB&certification=" + certificationType.getCertificationCode();
+        return baseURL;
+    }
+
+    private String appendReleaseParameter(String baseURL, int releaseYear){
+         baseURL += "&primary_release_year=" + releaseYear;
+        return baseURL;
+
     }
 }

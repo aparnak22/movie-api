@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-public class MovieSearchControllerByAgeTests {
+public class MovieSearchControllerByCriteriaTests {
 
     @Mock
     private MovieSearchService mockMovieSearchService;
@@ -39,7 +39,6 @@ public class MovieSearchControllerByAgeTests {
     @BeforeEach
     public   void setup(){
         mockMvcController = MockMvcBuilders.standaloneSetup(movieSearchController).build();
-
     }
 
 
