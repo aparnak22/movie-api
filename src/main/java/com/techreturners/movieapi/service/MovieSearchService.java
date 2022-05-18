@@ -1,5 +1,6 @@
 package com.techreturners.movieapi.service;
 
+import com.techreturners.movieapi.model.Certification;
 import com.techreturners.movieapi.model.MovieRecommendations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,10 @@ public class MovieSearchService {
 
     private RestTemplate restTemplate;
     private static String MOVIE_URL;
+
+    @Value("${external_api_url}")
+    private   String BASE_URL;
+
 
     @Value("${test_url}")
     public void setMovieUrl(String urlName) {
@@ -33,4 +38,12 @@ public class MovieSearchService {
         return getAllMovies;
     }
 
+
+    public MovieRecommendations getRecommendations(Certification certificationType) {
+
+        String url = BASE_URL + "&certification_country=GB&certification=" + certificationType.getCertificationCode();
+        System.out.println("calling " + url);
+        MovieRecommendations getMoviesByAge = restTemplate.getForObject(url, MovieRecommendations.class);
+        return getMoviesByAge;
+    }
 }
