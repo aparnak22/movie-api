@@ -1,7 +1,12 @@
 package com.techreturners.movieapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieInfo {
 
@@ -12,37 +17,4 @@ public class MovieInfo {
     private   String overview;
     private   float vote_average ;
 
-    public MovieInfo(){
-        super();
-    }
-    public MovieInfo(long id, String original_language, String release_date, String title, String overview, float vote_average) {
-        this.id = id;
-        this.original_language = original_language;
-        this.release_date = release_date;
-        this.title = title;
-        this.overview = overview;
-        this.vote_average = vote_average;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getOriginal_language() {
-        return original_language;
-    }
-
-    public String getRelease_date() {
-        return release_date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public float getVote_average(){ return vote_average;}
 }
