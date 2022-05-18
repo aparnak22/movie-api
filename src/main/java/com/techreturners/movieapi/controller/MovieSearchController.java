@@ -45,4 +45,12 @@ public class MovieSearchController {
         MovieRecommendations result = movieSearchService.getRecommendations(certification, releaseYear);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    // Discuss : vote_average ? or vote_average.gte ? or maybe.. just rate ?
+    @RequestMapping(value = "/search", params = "vote_average", method = GET)
+    public ResponseEntity<MovieRecommendations> getMovieRecommendations(@RequestParam("vote_average") float vote_average) {
+        System.out.println("searching by vote_average");
+        MovieRecommendations result = movieSearchService.getRecommendations(vote_average);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
