@@ -12,7 +12,7 @@ import lombok.*;
 public class MovieRecommendations {
 
      private String page;
-     private MovieInfo[] results;
+     private Movie[] results;
      private long total_pages;
      private long total_results;
 

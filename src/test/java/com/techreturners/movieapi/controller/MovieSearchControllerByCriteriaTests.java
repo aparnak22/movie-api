@@ -1,7 +1,7 @@
 package com.techreturners.movieapi.controller;
 
 import com.techreturners.movieapi.model.Certification;
-import com.techreturners.movieapi.model.MovieInfo;
+import com.techreturners.movieapi.model.Movie;
 import com.techreturners.movieapi.model.MovieRecommendations;
 import com.techreturners.movieapi.service.CertificationCategoryLookupService;
 import com.techreturners.movieapi.service.MovieSearchService;
@@ -45,12 +45,12 @@ public class MovieSearchControllerByCriteriaTests {
     @Test
     public void testGetListOfMoviesByAge() throws Exception {
 
-        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+        Movie movieInfo = new Movie(1L, "en", "2021-03-24", "Cars",
                 "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
-                new MovieInfo[]{movieInfo},
+                new Movie[]{movieInfo},
                 1,
                 1L);
 
@@ -68,12 +68,12 @@ public class MovieSearchControllerByCriteriaTests {
     @Test
     public void testGetListOfMoviesByReleaseYearAndAge() throws Exception {
 
-        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+        Movie movieInfo = new Movie(1L, "en", "2021-03-24", "Cars",
                 "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
-                new MovieInfo[]{movieInfo},
+                new Movie[]{movieInfo},
                 1,
                 1L);
 
@@ -92,12 +92,12 @@ public class MovieSearchControllerByCriteriaTests {
     @Test
     public void testGetListOfMoviesByVoteAverage() throws Exception {
 
-        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+        Movie movieInfo = new Movie(1L, "en", "2021-03-24", "Cars",
                 "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
-                new MovieInfo[]{movieInfo},
+                new Movie[]{movieInfo},
                 1,
                 1L);
 
@@ -114,12 +114,12 @@ public class MovieSearchControllerByCriteriaTests {
     @Test
     public void testGetListOfMoviesByTitle() throws Exception {
 
-        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+        Movie movieInfo = new Movie(1L, "en", "2021-03-24", "Cars",
                 "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
-                new MovieInfo[]{movieInfo},
+                new Movie[]{movieInfo},
                 1,
                 1L);
 

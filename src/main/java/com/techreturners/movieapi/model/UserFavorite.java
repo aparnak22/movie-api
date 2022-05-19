@@ -3,12 +3,13 @@ package com.techreturners.movieapi.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
+@Data
 public class UserFavorite {
 
     @Id
@@ -19,8 +20,12 @@ public class UserFavorite {
     @Column
     private String userName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movieId", referencedColumnName = "id")
-    private List<Movie> movies;
+    @ManyToMany()
+    @JoinTable(
+            name = "users_movies",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private Set<Movie> movies;
 
 }

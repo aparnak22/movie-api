@@ -1,52 +1,39 @@
 package com.techreturners.movieapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 @Data
+@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 
     @Id
-    @GeneratedValue
     @Column(updatable = false, nullable = false)
-    Integer id;
+    private   long id;
 
     @Column
-    boolean adult;
+    private   String original_language;
 
     @Column
-    String overview;
+    private   String release_date;
 
     @Column
-    String releaseDate;
+    private   String title;
 
     @Column
-    Genre genre;
+    private   String overview;
 
     @Column
-    String originalTitle;
-
-    @Column
-    String originalLanguage;
-
-    @Column
-    Integer voteCount;
-
-    @Column
-    Double voteAverage;
-
-    @Column
-    Certification certification;
+    private   float vote_average ;
 
 }
