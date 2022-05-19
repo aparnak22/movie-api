@@ -46,8 +46,7 @@ public class MovieSearchControllerByCriteriaTests {
     public void testGetListOfMoviesByAge() throws Exception {
 
         MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
-                "Disney Pixar's Cars"
-                        , 9.0F);
+                "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
@@ -64,16 +63,13 @@ public class MovieSearchControllerByCriteriaTests {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(1L));
-
-
     }
 
     @Test
     public void testGetListOfMoviesByReleaseYearAndAge() throws Exception {
 
         MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
-                "Disney Pixar's Cars"
-                , 9.0F);
+                "Disney Pixar's Cars", 9.0F);
 
         MovieRecommendations movieRecommendations = new MovieRecommendations(
                 "1",
@@ -90,7 +86,50 @@ public class MovieSearchControllerByCriteriaTests {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(1L));
+    }
 
+
+    @Test
+    public void testGetListOfMoviesByVoteAverage() throws Exception {
+
+        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+                "Disney Pixar's Cars", 9.0F);
+
+        MovieRecommendations movieRecommendations = new MovieRecommendations(
+                "1",
+                new MovieInfo[]{movieInfo},
+                1,
+                1L);
+
+        when(mockMovieSearchService.getRecommendations(9.0F)).thenReturn(movieRecommendations);
+
+        this.mockMvcController.perform(
+                    MockMvcRequestBuilders.get("/search?vote_average=9.0"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(1L));
 
     }
+
+    @Test
+    public void testGetListOfMoviesByTitle() throws Exception {
+
+        MovieInfo movieInfo = new MovieInfo(1L, "en", "2021-03-24", "Cars",
+                "Disney Pixar's Cars", 9.0F);
+
+        MovieRecommendations movieRecommendations = new MovieRecommendations(
+                "1",
+                new MovieInfo[]{movieInfo},
+                1,
+                1L);
+
+        when(mockMovieSearchService.getRecommendations("Cars")).thenReturn(movieRecommendations);
+
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.get("/search?title=Cars"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(1L));
+    }
+
 }
