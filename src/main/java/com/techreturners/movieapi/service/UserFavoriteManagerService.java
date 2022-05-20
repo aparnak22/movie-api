@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserFavoriteManagerService {
 
-  //  List<UserFavorite> getAllUsers();
+    UserFavorite getUser(String userName);
 
     UserFavorite createUserFavorite(UserFavorite userFavorite);
 

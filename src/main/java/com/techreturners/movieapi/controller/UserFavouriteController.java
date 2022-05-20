@@ -6,21 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserFavouriteController {
     @Autowired
     UserFavoriteManagerService userFavoriteManagerService;
 
+    @GetMapping(value = "/userfavorite")
+    public ResponseEntity<UserFavorite> getUserFavorite(@RequestParam("user_name") String userName){
+        System.out.println("Look up user");
+        UserFavorite userFavorite = userFavoriteManagerService.getUser(userName);
+        return new ResponseEntity<>(userFavorite, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/userfavorite")
     public ResponseEntity<UserFavorite> addUserFavorite(@RequestBody UserFavorite userFavorite){
         System.out.println("Received request");
         UserFavorite newUser = userFavoriteManagerService.createUserFavorite(userFavorite);
         HttpHeaders httpHeaders = new HttpHeaders();
+
         //httpHeaders.add("userFavorite", "//" + newBook.getId().toString());
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }

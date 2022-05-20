@@ -17,10 +17,10 @@ public class UserFavorite {
     @Column(updatable = false, nullable = false)
     private Integer id;
 
-    @Column
+    @Column(unique=true)
     private String userName;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_movies",
             joinColumns = @JoinColumn(name = "user_id"),
