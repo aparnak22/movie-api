@@ -22,7 +22,7 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
     public UserFavorite getUser(String userName){
 
          UserFavorite user = userFavoriteRepository.findByUserName(userName);
-         if  (user == null) throw new ResourceNotFoundException(userName + " does not exist");
+         if  (user == null) throw new ResourceNotFoundException(userName + " not found. ");
          return user;
 
     }
