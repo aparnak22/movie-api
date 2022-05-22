@@ -62,3 +62,8 @@ We have listed the acceptance criteria in two formats to help with learning.
 5. The user can delete from their list of favourites. 
 
 
+### Solution
+
+### Database
+The application needs a database in MySQL called 'movieapidb' . Once the database is created, 
+hibernate will create the necessary tables the first time the application is run. 
