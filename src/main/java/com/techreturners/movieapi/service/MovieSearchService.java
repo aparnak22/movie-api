@@ -22,10 +22,10 @@ public class MovieSearchService {
     @Value("${title_api_url}")
     private String TITLE_URL;
 
-    @Value("${test_url}")
-    public void setMovieUrl(String urlName) {
-        this.MOVIE_URL = urlName;
-    }
+ //   @Value("${test_url}")
+ //   public void setMovieUrl(String urlName) {
+//        this.MOVIE_URL = urlName;
+ //   }
 
     @Autowired
     public MovieSearchService(RestTemplateBuilder builder) {
