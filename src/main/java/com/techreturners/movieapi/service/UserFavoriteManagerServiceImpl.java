@@ -1,6 +1,7 @@
 package com.techreturners.movieapi.service;
 
 import com.techreturners.movieapi.exception.ResourceNotFoundException;
+import com.techreturners.movieapi.exception.ResourceSaveFailedException;
 import com.techreturners.movieapi.model.Movie;
 import com.techreturners.movieapi.model.UserFavorite;
 import com.techreturners.movieapi.repository.MovieRepository;
@@ -29,7 +30,11 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
 
     @Override
     public UserFavorite createUserFavorite(UserFavorite userFavorite) {
-        //UserFavorite user = userFavoriteRepository.findByUserName(userName);
+
+        UserFavorite savedUser = userFavoriteRepository.findByUserName(userFavorite.getUserName());
+
+        if (savedUser !=null ) throw new ResourceSaveFailedException(userFavorite.getUserName()
+                + " aleady exists. Please choose a different one.");
 
         for(Movie movie:userFavorite.getMovies()){
             movieRepository.save(movie);
