@@ -72,7 +72,7 @@ public class MovieSearchService {
     public MovieRecommendations getRecommendations(String title) {
         String url = appendTitleParameter(TITLE_URL, title);
         MovieRecommendations getMoviesByTitle = restTemplate.getForObject(url, MovieRecommendations.class);
-        System.out.println("calling " + url);
+        System.out.println("calling search by title " + url);
         return getMoviesByTitle;
     }
 
