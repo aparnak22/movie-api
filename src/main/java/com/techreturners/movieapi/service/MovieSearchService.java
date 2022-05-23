@@ -22,10 +22,10 @@ public class MovieSearchService {
     @Value("${title_api_url}")
     private String TITLE_URL;
 
-    @Value("${test_url}")
-    public void setMovieUrl(String urlName) {
-        this.MOVIE_URL = urlName;
-    }
+ //   @Value("${test_url}")
+ //   public void setMovieUrl(String urlName) {
+//        this.MOVIE_URL = urlName;
+ //   }
 
     @Autowired
     public MovieSearchService(RestTemplateBuilder builder) {
@@ -33,9 +33,7 @@ public class MovieSearchService {
     }
 
     public MovieRecommendations getRecommendations() {
-        System.out.println("calling " + MOVIE_URL);
-        MovieRecommendations getAllMovies = restTemplate.getForObject(MOVIE_URL, MovieRecommendations.class);
-        return getAllMovies;
+        return getRecommendations(null,-1,0);
     }
 
 
@@ -62,10 +60,19 @@ public class MovieSearchService {
         return getMoviesGreaterThanVoteAverage;
     }
 
+    public MovieRecommendations getRecommendations(Certification certificationType,
+                                                   int releaseYear, float voteAverage) {
+        String url = appendCertificationParameter(BASE_URL, certificationType);
+        url = appendReleaseParameter(url, releaseYear);
+        url = appendVoteAverageParameter(url, voteAverage);
+        System.out.println("refactored code calling " + url);
+        return  restTemplate.getForObject(url, MovieRecommendations.class);
+    }
+
     public MovieRecommendations getRecommendations(String title) {
         String url = appendTitleParameter(TITLE_URL, title);
         MovieRecommendations getMoviesByTitle = restTemplate.getForObject(url, MovieRecommendations.class);
-        System.out.println("calling " + url);
+        System.out.println("search by title " + url);
         return getMoviesByTitle;
     }
 
@@ -77,13 +84,14 @@ public class MovieSearchService {
     }
 
     private String appendReleaseParameter(String baseURL, int releaseYear){
-         baseURL += "&primary_release_year=" + releaseYear;
+        if ( releaseYear != -1) baseURL += "&primary_release_year=" + releaseYear;
         return baseURL;
 
     }
 
     private String appendVoteAverageParameter(String baseURL, float voteAverage) {
-        return baseURL + "&vote_average.gte=" + voteAverage;
+        if (voteAverage > 0)  return baseURL + "&vote_average.gte=" + voteAverage;
+        else return baseURL;
     }
 
     private String appendTitleParameter(String titleURL, String title){

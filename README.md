@@ -51,7 +51,7 @@ We have listed the acceptance criteria in two formats to help with learning.
 4. GIVEN a user wants to remove a movie from their favourites
    WHEN they select a movie
    THEN that movie is removed from the list of favourites for the user.
-
+ 
 
 ---- As a feature list---
 1. User can search for movies for the any of the following combination of criteria:

@@ -56,7 +56,7 @@ public class MovieSearchControllerByCriteriaTests {
 
         when(mockCertificationLookupService.getCertification(5)).thenReturn(Certification.parental_guidance);
 
-        when(mockMovieSearchService.getRecommendations(Certification.parental_guidance)).thenReturn(movieRecommendations);
+        when(mockMovieSearchService.getRecommendations(Certification.parental_guidance,-1,0)).thenReturn(movieRecommendations);
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders.get("/search?age=5"))
@@ -79,7 +79,7 @@ public class MovieSearchControllerByCriteriaTests {
 
         when(mockCertificationLookupService.getCertification(5)).thenReturn(Certification.parental_guidance);
 
-        when(mockMovieSearchService.getRecommendations(Certification.parental_guidance,2021)).thenReturn(movieRecommendations);
+        when(mockMovieSearchService.getRecommendations(Certification.parental_guidance,2021,0)).thenReturn(movieRecommendations);
 
         this.mockMvcController.perform(
                         MockMvcRequestBuilders.get("/search?age=5&release_year=2021"))
@@ -101,7 +101,7 @@ public class MovieSearchControllerByCriteriaTests {
                 1,
                 1L);
 
-        when(mockMovieSearchService.getRecommendations(9.0F)).thenReturn(movieRecommendations);
+        when(mockMovieSearchService.getRecommendations(null,-1,9.0F)).thenReturn(movieRecommendations);
 
         this.mockMvcController.perform(
                     MockMvcRequestBuilders.get("/search?vote_average=9.0"))

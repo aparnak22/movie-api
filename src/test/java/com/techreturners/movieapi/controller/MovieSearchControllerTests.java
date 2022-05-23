@@ -62,22 +62,14 @@ public class MovieSearchControllerTests {
                 747L,
                 14938L);
 
-        when(mockMovieSearchService.getRecommendations()).thenReturn(movieRecommendations);
+        when(mockMovieSearchService.getRecommendations(null,-1,0)).thenReturn(movieRecommendations);
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/search/"))
+                        MockMvcRequestBuilders.get("/search"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(747L));
 
-        /* String url = "http://localhost:8080/search";
-        mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI(url)))
-                .andExpect(method(HttpMethod.GET))
-                .andRespond(withStatus(HttpStatus.OK)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(mapper.writeValueAsString(movieRecommendations))
-                        );
-        */
+
     }
 }
