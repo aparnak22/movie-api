@@ -29,6 +29,16 @@ public class UserFavouriteController {
         //httpHeaders.add("userFavorite", "//" + newBook.getId().toString());
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
+
+    @PutMapping(value = "/userfavorite/{id}")
+    public ResponseEntity<UserFavorite> updateUserFavorite(@RequestBody UserFavorite userFavorite){
+        System.out.println("Received request - updateUserFavorite");
+        UserFavorite updatedFavorite = userFavoriteManagerService.updateUserFavorite(userFavorite);
+        HttpHeaders httpHeaders = new HttpHeaders();
+
+        return new ResponseEntity<>(updatedFavorite, HttpStatus.OK);
+    }
+
     /*
     *
     @Post   Mapping

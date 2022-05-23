@@ -42,4 +42,18 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
         UserFavorite createdUser = userFavoriteRepository.save(userFavorite);
         return createdUser;
     }
+
+    @Override
+    public UserFavorite updateUserFavorite(UserFavorite userFavorite) {
+        UserFavorite savedUser = userFavoriteRepository.findByUserName(userFavorite.getUserName());
+
+        if (savedUser == null ) throw new ResourceSaveFailedException(userFavorite.getUserName()
+                + " does not exists. Please choose a different one.");
+
+        for(Movie movie:userFavorite.getMovies()){
+            movieRepository.save(movie);
+        }
+        UserFavorite updatedUser = userFavoriteRepository.save(userFavorite);
+        return updatedUser;
+    }
 }

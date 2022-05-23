@@ -10,6 +10,8 @@ public interface UserFavoriteManagerService {
 
     UserFavorite createUserFavorite(UserFavorite userFavorite);
 
+    UserFavorite updateUserFavorite(UserFavorite userFavorite);
+
  //   UserFavorite getUserById(Long id);
 
   //  UserFavorite addMovie(UserFavorite userFavorite);
