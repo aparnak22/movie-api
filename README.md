@@ -1,5 +1,5 @@
 
-# ![img.png](img.png) MovieAPI API
+# ![img.png](img.png) MovieAPI
 YRTT group project.
 
 ## Introduction
