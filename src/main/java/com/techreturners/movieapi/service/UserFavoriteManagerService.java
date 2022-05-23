@@ -12,6 +12,8 @@ public interface UserFavoriteManagerService {
 
     UserFavorite updateUserFavorite(UserFavorite userFavorite);
 
+    void deleteMovieById(String userName, Long movieId);
+
  //   UserFavorite getUserById(Long id);
 
   //  UserFavorite addMovie(UserFavorite userFavorite);

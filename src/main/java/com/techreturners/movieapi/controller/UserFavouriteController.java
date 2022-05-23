@@ -3,10 +3,12 @@ package com.techreturners.movieapi.controller;
 import com.techreturners.movieapi.model.UserFavorite;
 import com.techreturners.movieapi.service.UserFavoriteManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class UserFavouriteController {
@@ -39,13 +41,17 @@ public class UserFavouriteController {
         return new ResponseEntity<>(updatedFavorite, HttpStatus.OK);
     }
 
-    /*
-    *
-    @Post   Mapping
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book newBook = bookManagerService.insertBook(book);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("book", "/api/v1/book/" + newBook.getId().toString());
-        return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
-    }*/
+    @DeleteMapping(value = "/userfavorite")
+    public ResponseEntity<String> deleteUserFavorite(@RequestParam("user_name") String userName,
+                                                     @RequestParam("movie_id" ) Long movieId){
+        System.out.println("Delete user's favourite movie request ");
+        try {
+            userFavoriteManagerService.deleteMovieById(userName, movieId);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource not found", e);
+        }
+        return new ResponseEntity<>("Successfully deleted movie id: " + movieId + " for User: "
+                + userName, HttpStatus.OK);
+    }
+
 }

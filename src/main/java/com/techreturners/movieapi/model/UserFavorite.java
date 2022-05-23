@@ -17,7 +17,7 @@ public class UserFavorite {
     @Column(updatable = false, nullable = false)
     private Integer id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String userName;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -27,5 +27,14 @@ public class UserFavorite {
             inverseJoinColumns = @JoinColumn(name = "movie_id")
     )
     private Set<Movie> movies;
+
+    public boolean removeMovie(Long movieId) {
+        Movie movie = this.movies.stream().filter(t -> t.getId() == movieId).findFirst().orElse(null);
+        if (movie != null) {
+            this.movies.remove(movie);
+            return true;
+        }
+        return false;
+    }
 
 }

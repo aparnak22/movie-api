@@ -23,7 +23,7 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
     public UserFavorite getUser(String userName){
 
          UserFavorite user = userFavoriteRepository.findByUserName(userName);
-         if  (user == null) throw new ResourceNotFoundException(userName + " not found. ");
+         if  (user == null) throw new ResourceNotFoundException("User: " + userName + " not found. ");
          return user;
 
     }
@@ -34,7 +34,7 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
         UserFavorite savedUser = userFavoriteRepository.findByUserName(userFavorite.getUserName());
 
         if (savedUser !=null ) throw new ResourceSaveFailedException(userFavorite.getUserName()
-                + " aleady exists. Please choose a different one.");
+                + " already exists. Please choose a different one.");
 
         for(Movie movie:userFavorite.getMovies()){
             movieRepository.save(movie);
@@ -56,4 +56,17 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
         UserFavorite updatedUser = userFavoriteRepository.save(userFavorite);
         return updatedUser;
     }
+
+    @Override
+    public void deleteMovieById(String userName, Long movieId){
+
+        UserFavorite user = userFavoriteRepository.findByUserName(userName);
+        if (user == null) throw new ResourceNotFoundException("User: " + userName + " not found. ");
+
+        if (user.removeMovie(movieId))
+            userFavoriteRepository.save(user);
+        else throw new ResourceNotFoundException("Movie id: " + movieId +
+                                        " for user: " + userName + " not found. ");
+    }
+
 }
