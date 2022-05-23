@@ -33,4 +33,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntityBuilder.build(err);
     }
 
+    @ExceptionHandler(ResourceSaveFailedException.class)
+    public ResponseEntity<Object> handleResourceSaveFailedException(ResourceSaveFailedException ex) {
+
+        List<String> details = new ArrayList<String>();
+        details.add(ex.getMessage());
+
+        ApiError err = new ApiError(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT,
+                "Resource Already Exists",
+                details);
+
+        return ResponseEntityBuilder.build(err);
+    }
 }
