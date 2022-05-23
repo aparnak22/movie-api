@@ -1,6 +1,6 @@
 
 # ![img.png](img.png) 
-MovieAPI
+# MovieAPI
 YRTT group project.
 
 ## Introduction
@@ -18,8 +18,6 @@ year/genre/actor/ratings/certification. Add checks for the age of who will be wa
 - Lombok
 - Spring Data JPA
 
-### How to Get Started
-- Fork this repo to your Github and then clone the forked version of this repo
 
 ### Main Entry Point
 - The Main Entry Point for the application is: [MovieApiApplication.java](src/main/java/com/techreturners/movieapi/MovieApiApplication.java)
@@ -31,9 +29,11 @@ year/genre/actor/ratings/certification. Add checks for the age of who will be wa
 
 ### Tasks
 
-Here are some tasks for you to work on:
+Here are some tasks we worked on:
 
-📘 Requirement Analysis Task
+### 📘 Requirements:
+
+Initial user stories and acceptance criteria through requirement analysis.
 
 ### User Stories:
 1. *As a user, I'd like to be able to see movie recommendations for a search criteria based on age.*
@@ -65,7 +65,6 @@ Here are some tasks for you to work on:
          so that I can remove a movie from the list.
      
 ### Acceptance Criteria
-
 We have listed the acceptance criteria in two formats to help with learning. 
 
 ------- as given when then -----
@@ -85,7 +84,6 @@ We have listed the acceptance criteria in two formats to help with learning.
 4. GIVEN a user wants to remove a movie from their favourites
    WHEN they select a movie
    THEN that movie is removed from the list of favourites for the user.
- 
 
 ---- As a feature list---
 1. User can search for movies for the any of the following combination of criteria:
@@ -95,15 +93,33 @@ We have listed the acceptance criteria in two formats to help with learning.
 4. The user can add to their list of favourite movies
 5. The user can delete from their list of favourites. 
 
-📘  Extension Ideas:
+### 📘 Design:
+We created an initial UML diagram to start off.
+![MovieAPI_ClassDiagram](https://user-images.githubusercontent.com/79167426/169909169-2c38c37d-5304-4e89-8346-02ad18ecd1a8.png)
 
-Use the Twilio API (https://www.twilio.com/docs/sms) to send a text to the user with the returned
+Our latest design is [here](https://github.com/sabomagicfeet/movie-api/blob/main/MovieAPI_ClassDiagram.png).
+
+### 📘 Implementation:
+1. *Created spring boot application and added code for API endpoints with the appropriate HTTP verbs.*
+2. *Addition of unit tests using Mockito.*
+3. *Handled proper error and exception.*
+4. *Tested API endpoints using Postman application.*
+5. *Included an /info endpoint to give the user information on how the application works and a /health endpoint to give the health of the application (using the Java actuator dependency).*
+
+### 📘 Database:
+The application uses a database in MySQL called 'movieapidb' to store user favorites.
+
+### 📘 Tools used:
+1. Created Trello board to organise our tasks.
+2. Organised a daily stand up time through Zoom calls.
+3. Google JamBoard to picture out our ideas.
+4. Used Swagger to create auto-generated documentation for APIs.
+
+
+### 📘 Extension Ideas:
+Implement search by other criteria (by genre/actor).
+
+To Use the Twilio API (https://www.twilio.com/docs/sms) to send a text to the user with the returned
 information.
-Deploy your API onto a cloud service, such as AWS.
 
-
-### Solution
-
-### Database
-The application needs a database in MySQL called 'movieapidb' . Once the database is created, 
-hibernate will create the necessary tables the first time the application is run. 
+To deploy your API onto a cloud service, such as AWS using Docker.
