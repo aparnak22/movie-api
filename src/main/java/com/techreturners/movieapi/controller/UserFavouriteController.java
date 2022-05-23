@@ -32,7 +32,7 @@ public class UserFavouriteController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/userfavorite/{id}")
+    @PutMapping(value = "/userfavorite")
     public ResponseEntity<UserFavorite> updateUserFavorite(@RequestBody UserFavorite userFavorite){
         System.out.println("Received request - updateUserFavorite");
         UserFavorite updatedFavorite = userFavoriteManagerService.updateUserFavorite(userFavorite);

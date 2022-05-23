@@ -50,6 +50,8 @@ public class UserFavoriteManagerServiceImpl implements UserFavoriteManagerServic
         if (savedUser == null ) throw new ResourceSaveFailedException(userFavorite.getUserName()
                 + " does not exists. Please choose a different one.");
 
+        userFavorite.getMovies().addAll(savedUser.getMovies());
+
         for(Movie movie:userFavorite.getMovies()){
             movieRepository.save(movie);
         }
