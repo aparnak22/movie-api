@@ -35,7 +35,7 @@ public class MovieSearchController {
        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/search", params = "title", method = GET)
+    @RequestMapping(value = "/searchbytitle", params = "title", method = GET)
     public ResponseEntity<MovieRecommendations> getMovieRecommendations(@RequestParam("title") String title) {
         System.out.println("searching by title");
         MovieRecommendations result = movieSearchService.getRecommendations(title);
