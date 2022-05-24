@@ -126,7 +126,7 @@ public class MovieSearchControllerByCriteriaTests {
         when(mockMovieSearchService.getRecommendations("Cars")).thenReturn(movieRecommendations);
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/search?title=Cars"))
+                        MockMvcRequestBuilders.get("/searchbytitle?title=Cars"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.page").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total_pages").value(1L));
