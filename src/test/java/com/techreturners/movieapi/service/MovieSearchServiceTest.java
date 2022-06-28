@@ -22,7 +22,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 
 
-@RestClientTest(MovieSearchService.class)
+@RestClientTest(MovieSearchServiceImpl.class)
 public class MovieSearchServiceTest {
 
 
